@@ -1,5 +1,7 @@
 # AzureOrphanResourceMonitor
 
+This peace of code will draw a HTML page with detached resources from Azure cloud and print the az-cli command for removal.
+
 ## Crontab configuration
 
 ```
