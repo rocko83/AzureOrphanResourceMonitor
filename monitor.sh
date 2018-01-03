@@ -336,7 +336,7 @@ MON_CONTAINERS
 export TOPICO="Monitor de VirtualMachine"
 export MENSAGEM="Relação de virtual machines desligadas e não desalocadas"
 HTML_TOPICO >> $INDEXREDIRECT
-#MON_VMS_OFF >> $INDEXREDIRECT
+MON_VMS_OFF >> $INDEXREDIRECT
 export TOPICO=""
 export MENSAGEM="Última coleta em:$(date)"
 HTML_TOPICO >> $INDEXREDIRECT
