@@ -1,0 +1,228 @@
+table.blueTable {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+}
+table.blueTable td, table.blueTable th {
+  border: 1px solid #AAAAAA;
+  padding: 3px 2px;
+}
+table.blueTable tbody td {
+  font-size: 13px;
+}
+table.blueTable tr:nth-child(even) {
+  background: #D0E4F5;
+}
+table.blueTable thead {
+  background: #1C6EA4;
+  background: -moz-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+  background: -webkit-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+  background: linear-gradient(to bottom, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+  border-bottom: 2px solid #444444;
+}
+table.blueTable thead th {
+  font-size: 15px;
+  font-weight: bold;
+  color: #FFFFFF;
+  border-left: 2px solid #D0E4F5;
+}
+table.blueTable thead th:first-child {
+  border-left: none;
+}
+
+table.blueTable tfoot {
+  font-size: 14px;
+  font-weight: bold;
+  color: #FFFFFF;
+  background: #D0E4F5;
+  background: -moz-linear-gradient(top, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+  background: -webkit-linear-gradient(top, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+  background: linear-gradient(to bottom, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+  border-top: 2px solid #444444;
+}
+table.blueTable tfoot td {
+  font-size: 14px;
+}
+table.blueTable tfoot .links {
+  text-align: right;
+}
+table.blueTable tfoot .links a{
+  display: inline-block;
+  background: #1C6EA4;
+  color: #FFFFFF;
+  padding: 2px 8px;
+  border-radius: 5px;
+}
+table.RedTable {
+  border: 1px solid #A40A34;
+  background-color: #EEEEEE;
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+}
+table.RedTable td, table.RedTable th {
+  border: 1px solid #AAAAAA;
+  padding: 3px 2px;
+}
+table.RedTable tbody td {
+  font-size: 13px;
+}
+table.RedTable tr:nth-child(even) {
+  background: #F5A2AC;
+}
+table.RedTable thead {
+  background: #A40A0A;
+  background: -moz-linear-gradient(top, #bb4747 0%, #ad2222 66%, #A40A0A 100%);
+  background: -webkit-linear-gradient(top, #bb4747 0%, #ad2222 66%, #A40A0A 100%);
+  background: linear-gradient(to bottom, #bb4747 0%, #ad2222 66%, #A40A0A 100%);
+  border-bottom: 2px solid #444444;
+}
+table.RedTable thead th {
+  font-size: 15px;
+  font-weight: bold;
+  color: #FFFFFF;
+  border-left: 2px solid #D0E4F5;
+}
+table.RedTable thead th:first-child {
+  border-left: none;
+}
+
+table.RedTable tfoot {
+  font-size: 14px;
+  font-weight: bold;
+  color: #FFFFFF;
+  background: #F54545;
+  background: -moz-linear-gradient(top, #f77373 0%, #f65757 66%, #F54545 100%);
+  background: -webkit-linear-gradient(top, #f77373 0%, #f65757 66%, #F54545 100%);
+  background: linear-gradient(to bottom, #f77373 0%, #f65757 66%, #F54545 100%);
+  border-top: 2px solid #444444;
+}
+table.RedTable tfoot td {
+  font-size: 14px;
+}
+table.RedTable tfoot .links {
+  text-align: right;
+}
+table.RedTable tfoot .links a{
+  display: inline-block;
+  background: #0304A4;
+  color: #FFFFFF;
+  padding: 2px 8px;
+  border-radius: 5px;
+}
+table.GreenTable {
+  border: 1px solid #028001;
+  background-color: #EEEEEE;
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+}
+table.GreenTable td, table.GreenTable th {
+  border: 1px solid #AAAAAA;
+  padding: 3px 2px;
+}
+table.GreenTable tbody td {
+  font-size: 13px;
+}
+table.GreenTable tr:nth-child(even) {
+  background: #B3F5B6;
+}
+table.GreenTable thead {
+  background: #00961D;
+  background: -moz-linear-gradient(top, #40b055 0%, #19a033 66%, #00961D 100%);
+  background: -webkit-linear-gradient(top, #40b055 0%, #19a033 66%, #00961D 100%);
+  background: linear-gradient(to bottom, #40b055 0%, #19a033 66%, #00961D 100%);
+  border-bottom: 2px solid #444444;
+}
+table.GreenTable thead th {
+  font-size: 15px;
+  font-weight: bold;
+  color: #FFFFFF;
+  border-left: 2px solid #D0E4F5;
+}
+table.GreenTable thead th:first-child {
+  border-left: none;
+}
+
+table.GreenTable tfoot {
+  font-size: 14px;
+  font-weight: bold;
+  color: #FFFFFF;
+  background: #1CBA26;
+  background: -moz-linear-gradient(top, #55cb5c 0%, #32c13b 66%, #1CBA26 100%);
+  background: -webkit-linear-gradient(top, #55cb5c 0%, #32c13b 66%, #1CBA26 100%);
+  background: linear-gradient(to bottom, #55cb5c 0%, #32c13b 66%, #1CBA26 100%);
+  border-top: 2px solid #444444;
+}
+table.GreenTable tfoot td {
+  font-size: 14px;
+}
+table.GreenTable tfoot .links {
+  text-align: right;
+}
+table.GreenTable tfoot .links a{
+  display: inline-block;
+  background: #A43317;
+  color: #FFFFFF;
+  padding: 2px 8px;
+  border-radius: 5px;
+}
+table.YellowTable {
+  border: 1px solid #7B8704;
+  background-color: #EEEEEE;
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+}
+table.YellowTable td, table.YellowTable th {
+  border: 1px solid #AAAAAA;
+  padding: 3px 2px;
+}
+table.YellowTable tbody td {
+  font-size: 13px;
+}
+table.YellowTable tr:nth-child(even) {
+  background: #FDFFD4;
+}
+table.YellowTable thead {
+  background: #E9FF10;
+  background: -moz-linear-gradient(top, #eeff4c 0%, #ebff28 66%, #E9FF10 100%);
+  background: -webkit-linear-gradient(top, #eeff4c 0%, #ebff28 66%, #E9FF10 100%);
+  background: linear-gradient(to bottom, #eeff4c 0%, #ebff28 66%, #E9FF10 100%);
+  border-bottom: 2px solid #444444;
+}
+table.YellowTable thead th {
+  font-size: 15px;
+  font-weight: bold;
+  color: #000000;
+  border-left: 2px solid #D0E4F5;
+}
+table.YellowTable thead th:first-child {
+  border-left: none;
+}
+
+table.YellowTable tfoot {
+  font-size: 14px;
+  font-weight: bold;
+  color: #FFFFFF;
+  background: #CDF20C;
+  background: -moz-linear-gradient(top, #d9f549 0%, #d2f324 66%, #CDF20C 100%);
+  background: -webkit-linear-gradient(top, #d9f549 0%, #d2f324 66%, #CDF20C 100%);
+  background: linear-gradient(to bottom, #d9f549 0%, #d2f324 66%, #CDF20C 100%);
+  border-top: 2px solid #444444;
+}
+table.YellowTable tfoot td {
+  font-size: 14px;
+}
+table.YellowTable tfoot .links {
+  text-align: right;
+}
+table.YellowTable tfoot .links a{
+  display: inline-block;
+  background: #578DDE;
+  color: #FFFFFF;
+  padding: 2px 8px;
+  border-radius: 5px;
+}
