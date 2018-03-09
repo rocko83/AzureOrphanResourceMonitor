@@ -3,6 +3,7 @@ az login --service-principal  -u http://xxxxxxxxx -t xxxxxxxxxxxxxxxxxxxxxxx -p 
 export PATHSCRIPT=/var/www/html
 export CONTAINERREDIRECT=$PATHSCRIPT/container.html
 export INDEXREDIRECT=$PATHSCRIPT/index.html
+export STARTSTOPREDIRECT=$PATHSCRIPT/startstop.html
 function Tempfunc() {
 	case $1 in
 	criar)
@@ -49,7 +50,7 @@ function MON_NICS() {
   do
     echo \<tr\>
     echo \<td\>$NICNAME\</td\>
-    echo \<td\>az network nic delete --ids $ID -y \</td\>
+    echo \<td\>az network nic delete --ids $ID \</td\>
     echo \</tr\>
   done < $TEMPFILE
   echo \</tbody\>
@@ -281,6 +282,64 @@ function MON_CONTAINERS() {
   Tempfunc apagar $TEMPFILE
 	#echo $TEMPFILE
 }
+function MON_STARTSTOP() {
+	export TEMPFILE=$(Tempfunc criar)
+	export TOPICO="Relação de VMs configuradas com STOP/START<br>$(date)"
+	HTML_OPEN > $STARTSTOPREDIRECT
+	export TOPICO="StorageContainers"
+	export MENSAGEM="Recursos alocados em StorageContainers"
+	HTML_TOPICO >> $STARTSTOPREDIRECT
+  echo \<table class="GreenTable"\> >> $STARTSTOPREDIRECT
+  echo \<thead\> >> $STARTSTOPREDIRECT
+  echo \<tr\> >> $STARTSTOPREDIRECT
+  echo \<th\>VM Name\</th\> >> $STARTSTOPREDIRECT
+  echo \<th\>Location\</th\> >> $STARTSTOPREDIRECT
+	echo \<th\>Resource Group\</th\> >> $STARTSTOPREDIRECT
+	echo \<th\>START\</th\> >> $STARTSTOPREDIRECT
+	echo \<th\>STOP\</th\> >> $STARTSTOPREDIRECT
+  echo \</tr\> >> $STARTSTOPREDIRECT
+  echo \</thead\> >> $STARTSTOPREDIRECT
+  echo \<tbody\> >> $STARTSTOPREDIRECT
+	az vm list --query "[].[tags.start=='True',tags.shutdown=='True',name,id,location,resourceGroup]" -o tsv > $TEMPFILE
+	cat $TEMPFILE | sort -d -k 6 | \
+	while read STARTBOL STOPBOL VMNAME VMID VMLOCATION VMRG
+	do
+		echo \<tr\> >> $STARTSTOPREDIRECT
+    echo \<td\>$VMNAME\</td\> >> $STARTSTOPREDIRECT
+    echo \<td\>$VMLOCATION\</td\> >> $STARTSTOPREDIRECT
+		echo \<td\>$VMRG\</td\> >> $STARTSTOPREDIRECT
+		echo \<td\>$STARTBOL\</td\> >> $STARTSTOPREDIRECT
+		echo \<td\>$STOPBOL\</td\> >> $STARTSTOPREDIRECT
+    echo \</tr\> >> $STARTSTOPREDIRECT
+	done
+  echo \</tbody\> >> $STARTSTOPREDIRECT
+  echo \</table\> >> $STARTSTOPREDIRECT
+	HTML_CLOSE >> $STARTSTOPREDIRECT
+	echo \<table class="YellowTable"\>  >> $INDEXREDIRECT
+  echo \<thead\> >> $INDEXREDIRECT
+  echo \<tr\> >> $INDEXREDIRECT
+  echo \<th\>Resource Group\</th\> >> $INDEXREDIRECT
+  echo \<th\>Scheduled to Stop\/Total\</th\> >> $INDEXREDIRECT
+	echo \<th\>Scheduled to Start\/Total\</th\> >> $INDEXREDIRECT
+  echo \</tr\> >> $INDEXREDIRECT
+  echo \</thead\> >> $INDEXREDIRECT
+  echo \<tbody\> >> $INDEXREDIRECT
+	cat $TEMPFILE | \
+	awk '{print $6}' | \
+	sort -u | \
+	while read VMRGS
+	do
+		echo \<tr\> >> $INDEXREDIRECT
+		echo \<td\>$VMRGS\</td\> >> $INDEXREDIRECT
+		echo \<td\>$(grep -w $VMRGS $TEMPFILE | awk '{print $2}'| grep -w True| wc -l )\/$(grep -w $VMRGS $TEMPFILE | awk '{print $2}'| wc -l)\</td\> >> $INDEXREDIRECT
+		echo \<td\>$(grep -w $VMRGS $TEMPFILE | awk '{print $1}'| grep -w True| wc -l )\/$(grep -w $VMRGS $TEMPFILE | awk '{print $1}'| wc -l)\</td\> >> $INDEXREDIRECT
+		echo \</tr\> >> $INDEXREDIRECT
+	done
+	echo \</tbody\> >> $INDEXREDIRECT
+  echo \</table\> >> $INDEXREDIRECT
+  Tempfunc apagar $TEMPFILE
+	#echo $TEMPFILE
+}
 function HTML_OPEN() {
   echo \<!DOCTYPE html\>
   echo \<html\>
@@ -320,19 +379,27 @@ HTML_OPEN > $INDEXREDIRECT
 export TOPICO="Monitor de Disco"
 export MENSAGEM="Relação de discos criados e não alocados na Azure."
 HTML_TOPICO >> $INDEXREDIRECT
-#MON_DISKS >> $INDEXREDIRECT
+MON_DISKS >> $INDEXREDIRECT
 export TOPICO="Monitor de Snapshot"
 export MENSAGEM="Lista de snapshots criados"
 HTML_TOPICO >> $INDEXREDIRECT
-#MON_DISKS_SNAPSHOTS >> $INDEXREDIRECT
+MON_DISKS_SNAPSHOTS >> $INDEXREDIRECT
 export TOPICO="Monitor de NetworkInterface"
 export MENSAGEM="Lista de interfaces de rede criadas e não alocadas"
 HTML_TOPICO >> $INDEXREDIRECT
-#MON_NICS >> $INDEXREDIRECT
+MON_NICS >> $INDEXREDIRECT
+
+####
+export TOPICO="Virtual Machines Stop Start"
+export MENSAGEM="Lista de virtual machines configuradas para ligar e desligar automaticamente. <br>Para uma lista completa de objetos clique <a href=startstop.html>aqui</a>."
+HTML_TOPICO >> $INDEXREDIRECT
+MON_STARTSTOP
+###
 export TOPICO="StorageContainers"
 export MENSAGEM="Recursos alocados em StorageContainers.<br>Para acessar a lista completa de objetos clique <a href=container.html>aqui</a>."
 HTML_TOPICO >> $INDEXREDIRECT
 MON_CONTAINERS
+##
 export TOPICO="Monitor de VirtualMachine"
 export MENSAGEM="Relação de virtual machines desligadas e não desalocadas"
 HTML_TOPICO >> $INDEXREDIRECT
